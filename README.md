@@ -1,0 +1,2 @@
+# 38-SOPKATHON-SERVER-WEB1
+LET'S SOPT 38기 솝커톤 웹 1조 서버
