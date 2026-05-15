@@ -1,7 +1,6 @@
 package org.sopt.sopkathon_server.global.response.error;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
 @Getter
 public enum ErrorCode implements ErrorType {

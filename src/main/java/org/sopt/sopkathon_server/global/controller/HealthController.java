@@ -1,6 +1,5 @@
 package org.sopt.sopkathon_server.global.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.sopt.sopkathon_server.global.response.CommonApiResponse;
 import org.sopt.sopkathon_server.global.response.success.SuccessCode;
