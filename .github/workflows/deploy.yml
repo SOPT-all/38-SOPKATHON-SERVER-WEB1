@@ -25,6 +25,9 @@ jobs:
             export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
             chmod +x ./gradlew
             ./gradlew clean build -x test
-            pkill -f 'sopkathon-server' || true
-            sleep 3
+            if [ -f app.pid ]; then
+              kill $(cat app.pid) || true
+              sleep 3
+            fi
             nohup java -Dspring.profiles.active=prod -jar build/libs/sopkathon-server-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+            echo $! > app.pid
