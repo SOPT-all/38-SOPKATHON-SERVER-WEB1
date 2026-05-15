@@ -1,0 +1,30 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: EC2 배포
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/38-SOPKATHON-SERVER-WEB1
+            git pull origin develop
+            export DB_HOST="${{ secrets.DB_HOST }}"
+            export DB_PORT="${{ secrets.DB_PORT }}"
+            export DB_NAME="${{ secrets.DB_NAME }}"
+            export DB_USERNAME="${{ secrets.DB_USERNAME }}"
+            export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
+            chmod +x ./gradlew
+            ./gradlew clean build -x test
+            pkill -f 'java -jar' || true
+            sleep 3
+            nohup java -Dspring.profiles.active=prod -jar build/libs/sopkathon-server-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
