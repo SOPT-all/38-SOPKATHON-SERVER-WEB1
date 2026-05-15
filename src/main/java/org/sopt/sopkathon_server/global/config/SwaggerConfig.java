@@ -16,8 +16,13 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI openAPI() {
-        return new OpenAPI().info(new Info().title("SOPKATHON API")
-                .description("SOPKATHON WEB1 API Documentation")
-                .version("v1.0.0")).servers(List.of(new Server().url(baseUrl).description("Local Server")));
+        return new OpenAPI()
+                .info(new Info().title("SOPKATHON API")
+                        .description("SOPKATHON WEB1 API Documentation")
+                        .version("v1.0.0"))
+                .servers(List.of(
+                        new Server().url("http://3.34.14.5:8080").description("Production Server"),
+                        new Server().url("http://localhost:8080").description("Local Server")
+                ));
     }
 }
