@@ -47,7 +47,8 @@ public class GlobalExceptionHandler {
                 .collect(Collectors.toMap(
                         FieldError::getField,
                         fieldError -> fieldError.getDefaultMessage() != null
-                                ? fieldError.getDefaultMessage() : "유효하지 않은 값입니다"
+                                ? fieldError.getDefaultMessage() : "유효하지 않은 값입니다",
+                        (existing, newValue) -> existing + ", " + newValue
                 ));
         log.warn("[Validation] {}", errors);
         return ResponseEntity
