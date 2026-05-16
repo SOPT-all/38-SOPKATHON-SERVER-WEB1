@@ -21,7 +21,7 @@ public class SwaggerConfig {
                         .description("SOPKATHON WEB1 API Documentation")
                         .version("v1.0.0"))
                 .servers(List.of(
-                        new Server().url("http://3.34.14.5:8080").description("Production Server"),
+                        new Server().url("https://mosimosi.p-e.kr").description("Production Server"),
                         new Server().url("http://localhost:8080").description("Local Server")
                 ));
     }
