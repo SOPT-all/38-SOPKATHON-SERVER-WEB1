@@ -24,7 +24,8 @@ public enum ErrorCode implements ErrorType {
 
 
     //Message
-    MESSAGE_NOT_FOUND(404, "MSG_404", "존재하지 않는 메시지입니다.");
+    MESSAGE_NOT_FOUND(404, "MSG_404", "존재하지 않는 메시지입니다."),
+    REPLY_NOT_ALLOWED(400, "MSG_400", "답장에는 답장할 수 없습니다.");
 
     private final int status;
     private final String code;
