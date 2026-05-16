@@ -34,6 +34,15 @@ public class MessageController {
                 .body(CommonApiResponse.success(SuccessCode.CREATED, messageService.createMessage(request)));
     }
 
+    @MessageReplyApi
+    @PostMapping("/{messageId}/reply")
+    public ResponseEntity<CommonApiResponse<MessageCreateResponse>> replyMessage(
+            @PathVariable Long messageId,
+            @RequestBody @Valid MessageCreateRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(CommonApiResponse.success(SuccessCode.CREATED, messageService.replyMessage(messageId, request)));
+    }
+
     @MessageGetApi
     @GetMapping("/{messageId}")
     public ResponseEntity<CommonApiResponse<MessageGetResponse>> getMessage(
