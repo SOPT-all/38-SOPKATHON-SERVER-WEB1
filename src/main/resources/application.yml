@@ -18,6 +18,9 @@ management:
       probes:
         enabled: true
 
+app:
+  base-url: https://mosimosi.p-e.kr
+
 springdoc:
   swagger-ui:
     operations-sorter: alpha
