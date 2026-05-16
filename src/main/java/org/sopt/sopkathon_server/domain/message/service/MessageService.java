@@ -35,6 +35,24 @@ public class MessageService {
         return new MessageCreateResponse(saved.getId(), viewUrl);
     }
 
+    @Transactional
+    public MessageCreateResponse replyMessage(Long parentMessageId, MessageCreateRequest request) {
+        Message parent = messageRepository.findById(parentMessageId)
+                .orElseThrow(() -> new BaseException(ErrorCode.MESSAGE_NOT_FOUND));
+
+        Message message = Message.builder()
+                .senderInitial(request.senderInitial())
+                .receiverInitial(request.receiverInitial())
+                .content(request.content())
+                .parent(parent)
+                .build();
+
+        Message saved = messageRepository.save(message);
+        String viewUrl = baseUrl + "/m/" + saved.getId();
+
+        return new MessageCreateResponse(saved.getId(), viewUrl);
+    }
+
     @Transactional(readOnly = true)
     public MessageGetResponse getMessage(Long messageId) {
         Message message = messageRepository.findById(messageId)

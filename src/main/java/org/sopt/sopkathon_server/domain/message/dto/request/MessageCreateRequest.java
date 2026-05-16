@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+
 public record MessageCreateRequest(
 
         @NotBlank(message = "보내는 사람 이니셜은 필수입니다.")
