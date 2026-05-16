@@ -5,11 +5,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.sopt.sopkathon_server.domain.message.dto.request.MessageCreateRequest;
 import org.sopt.sopkathon_server.domain.message.dto.response.MessageCreateResponse;
+import org.sopt.sopkathon_server.domain.message.dto.response.MessageGetResponse;
 import org.sopt.sopkathon_server.domain.message.service.MessageService;
 import org.sopt.sopkathon_server.global.response.CommonApiResponse;
 import org.sopt.sopkathon_server.global.response.success.SuccessCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +32,12 @@ public class MessageController {
             @RequestBody @Valid MessageCreateRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(CommonApiResponse.success(SuccessCode.CREATED, messageService.createMessage(request)));
+    }
+
+    @MessageGetApi
+    @GetMapping("/{messageId}")
+    public ResponseEntity<CommonApiResponse<MessageGetResponse>> getMessage(
+            @PathVariable Long messageId) {
+        return ResponseEntity.ok(CommonApiResponse.success(SuccessCode.SUCCESS, messageService.getMessage(messageId)));
     }
 }

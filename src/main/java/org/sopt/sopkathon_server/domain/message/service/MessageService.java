@@ -3,8 +3,11 @@ package org.sopt.sopkathon_server.domain.message.service;
 import lombok.RequiredArgsConstructor;
 import org.sopt.sopkathon_server.domain.message.dto.request.MessageCreateRequest;
 import org.sopt.sopkathon_server.domain.message.dto.response.MessageCreateResponse;
+import org.sopt.sopkathon_server.domain.message.dto.response.MessageGetResponse;
 import org.sopt.sopkathon_server.domain.message.entity.Message;
 import org.sopt.sopkathon_server.domain.message.repository.MessageRepository;
+import org.sopt.sopkathon_server.global.exception.BaseException;
+import org.sopt.sopkathon_server.global.response.error.ErrorCode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,5 +33,12 @@ public class MessageService {
         String viewUrl = baseUrl + "/m/" + saved.getId();
 
         return new MessageCreateResponse(saved.getId(), viewUrl);
+    }
+
+    @Transactional(readOnly = true)
+    public MessageGetResponse getMessage(Long messageId) {
+        Message message = messageRepository.findById(messageId)
+                .orElseThrow(() -> new BaseException(ErrorCode.MESSAGE_NOT_FOUND));
+        return MessageGetResponse.from(message);
     }
 }
