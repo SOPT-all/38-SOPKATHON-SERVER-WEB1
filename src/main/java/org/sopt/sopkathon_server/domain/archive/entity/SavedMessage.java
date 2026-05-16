@@ -1,10 +1,11 @@
-package org.sopt.sopkathon_server.domain.message.entity;
+package org.sopt.sopkathon_server.domain.archive.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.sopt.sopkathon_server.domain.message.entity.Message;
 import org.sopt.sopkathon_server.global.entity.BaseTimeEntity;
 
 @Entity
