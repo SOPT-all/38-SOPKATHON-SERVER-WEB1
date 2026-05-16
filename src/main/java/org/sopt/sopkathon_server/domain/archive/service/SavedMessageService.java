@@ -65,4 +65,17 @@ public class SavedMessageService {
 
         return SavedMessageResponse.from(savedMessage);
     }
+
+    // 저장된 메시지 삭제
+    @Transactional
+    public void deleteSavedMessage(Long savedMessageId, String password) {
+        SavedMessage savedMessage = savedMessageRepository.findById(savedMessageId)
+                .orElseThrow(() -> new BaseException(ErrorCode.SAVED_MESSAGE_NOT_FOUND));
+
+        if(!passwordEncoder.matches(password, savedMessage.getPasswordHash())) {
+            throw new BaseException(ErrorCode.INVALID_PASSWORD);
+        }
+
+        savedMessageRepository.delete(savedMessage);
+    }
 }
