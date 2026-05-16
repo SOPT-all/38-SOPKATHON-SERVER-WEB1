@@ -40,6 +40,10 @@ public class MessageService {
         Message parent = messageRepository.findById(parentMessageId)
                 .orElseThrow(() -> new BaseException(ErrorCode.MESSAGE_NOT_FOUND));
 
+        if (parent.getParent() != null) {
+            throw new BaseException(ErrorCode.REPLY_NOT_ALLOWED);
+        }
+
         Message message = Message.builder()
                 .senderInitial(request.senderInitial())
                 .receiverInitial(request.receiverInitial())

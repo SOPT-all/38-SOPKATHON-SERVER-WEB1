@@ -2,7 +2,9 @@ package org.sopt.sopkathon_server.domain.message.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.sopt.sopkathon_server.global.response.CommonApiResponse;
@@ -15,6 +17,13 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Operation(summary = "메시지 생성", description = "익명 메시지를 생성합니다.")
+@RequestBody(content = @Content(examples = @ExampleObject(value = """
+        {
+          "senderInitial": "JH",
+          "receiverInitial": "YJ",
+          "content": "안뇽~"
+        }
+        """)))
 @ApiResponses({
         @ApiResponse(responseCode = "201", description = "메시지 생성 성공",
                 content = @Content(schema = @Schema(implementation = CommonApiResponse.class))),
