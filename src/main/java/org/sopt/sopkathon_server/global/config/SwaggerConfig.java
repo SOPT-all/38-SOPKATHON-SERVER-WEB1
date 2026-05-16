@@ -11,7 +11,7 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
-    @Value("${spring.swagger.base-url:http://localhost:8080}")
+    @Value("${app.base-url}")
     private String baseUrl;
 
     @Bean
@@ -20,9 +20,6 @@ public class SwaggerConfig {
                 .info(new Info().title("SOPKATHON API")
                         .description("SOPKATHON WEB1 API Documentation")
                         .version("v1.0.0"))
-                .servers(List.of(
-                        new Server().url("https://mosimosi.p-e.kr").description("Production Server"),
-                        new Server().url("http://localhost:8080").description("Local Server")
-                ));
+                .servers(List.of(new Server().url(baseUrl)));
     }
 }
