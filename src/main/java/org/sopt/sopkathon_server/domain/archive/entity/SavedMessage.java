@@ -24,9 +24,6 @@ public class SavedMessage extends BaseTimeEntity {
     @Column(nullable = false)
     private String receiverInitial;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
-
     @Column(nullable = false)
     private String passwordHash;
 
@@ -35,10 +32,9 @@ public class SavedMessage extends BaseTimeEntity {
     private Message message;
 
     @Builder
-    private SavedMessage(String senderInitial, String receiverInitial, String content, String passwordHash, Message message) {
+    private SavedMessage(String senderInitial, String receiverInitial, String passwordHash, Message message) {
         this.senderInitial = senderInitial;
         this.receiverInitial = receiverInitial;
-        this.content = content;
         this.passwordHash = passwordHash;
         this.message = message;
     }
