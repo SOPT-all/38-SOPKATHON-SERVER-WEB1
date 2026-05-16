@@ -8,9 +8,11 @@ import jakarta.validation.constraints.Size;
 public record MessageCreateRequest(
 
         @NotBlank(message = "보내는 사람 이니셜은 필수입니다.")
+        @Size(max = 3, message = "이니셜은 3자 이하로 입력해주세요.")
         String senderInitial,
 
         @NotBlank(message = "받는 사람 이니셜은 필수입니다.")
+        @Size(max = 3, message = "이니셜은 3자 이하로 입력해주세요.")
         String receiverInitial,
 
         @NotBlank(message = "내용은 필수입니다.")
