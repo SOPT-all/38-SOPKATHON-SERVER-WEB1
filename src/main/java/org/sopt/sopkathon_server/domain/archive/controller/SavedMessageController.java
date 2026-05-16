@@ -48,7 +48,7 @@ public class SavedMessageController {
     }
 
    // 아카이브 단건 조회
-    @GetMapping("/{savedMessageId}")
+    @PostMapping("/{savedMessageId}")
     public ResponseEntity<CommonApiResponse<SavedMessageResponse>> getSavedMessage(
             @PathVariable Long savedMessageId,
 
@@ -63,4 +63,7 @@ public class SavedMessageController {
         );
     }
 
+//    // 저장된 메시지 삭제
+//    @DeleteMapping("/{savedMessageId}")
+//    public ResponseEntity<CommonApiResponse<Void>> deleteSavedMessage()
 }
