@@ -1,6 +1,7 @@
 package org.sopt.sopkathon_server.domain.message.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -14,7 +15,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-@Operation(summary = "메시지 단건 조회", description = "메시지 ID로 메시지를 조회합니다.")
+@Operation(summary = "메시지 단건 조회", description = "메시지 ID로 메시지를 조회합니다.",
+        parameters = @Parameter(name = "messageId", description = "조회할 메시지 ID", example = "1"))
 @ApiResponses({
         @ApiResponse(responseCode = "200", description = "메시지 조회 성공",
                 content = @Content(schema = @Schema(implementation = CommonApiResponse.class))),
