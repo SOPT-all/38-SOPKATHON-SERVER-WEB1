@@ -11,7 +11,7 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
-    @Value("${spring.swagger.base-url:http://localhost:8080}")
+    @Value("${app.base-url}")
     private String baseUrl;
 
     @Bean
