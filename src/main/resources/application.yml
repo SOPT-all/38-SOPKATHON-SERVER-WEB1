@@ -18,6 +18,7 @@ management:
       probes:
         enabled: true
 
+
 springdoc:
   swagger-ui:
     operations-sorter: alpha
