@@ -15,8 +15,8 @@ spring:
         format_sql: false
     open-in-view: false
 
-  swagger:
-    base-url: http://3.34.14.5:8080
+app:
+  base-url: https://mosimosi.p-e.kr
 
 logging:
   level:
